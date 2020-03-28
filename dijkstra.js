@@ -1,12 +1,10 @@
-const questao2 = {
-  A: {B: 3, C: 1},
-  B: {D: 1, G: 5},
-  C: {D: 2, F: 5},
-  D: {F: 2, E: 4},
-	E: {H: 1},
-	F: {H: 3},
-	G: {E: 2},
-  H: {}
+﻿const questaotwo = {
+  A: {B: 4, C: 2},
+  B: {D: 5, C: 2},
+  C: {B: 2, D: 8, E: 10},
+  D: {E: 4, F: 6},
+	E: {D: 4, F: 2},
+	F: {}
 };
 
 const menorCustos = (custos, processado) => {
@@ -24,10 +22,10 @@ const menorCustos = (custos, processado) => {
 const dijkstra = (graph) => {
 
   // rastreia o menor custos para alcancar cd nó
-  const custos = Object.assign({H: Infinity}, graph.A);
+  const custos = Object.assign({F: Infinity}, graph.A);
 
   // rastrear caminhos
-  const parents = {H: null};
+  const parents = {F: null};
   for (let child in graph.A) {
     parents[child] = 'inicio: A';
   }
@@ -50,8 +48,8 @@ const dijkstra = (graph) => {
     node = menorCustos(custos, processado);
   }
 
-  let optimalPath = ['final: H'];
-  let parent = parents.H;
+  let optimalPath = ['final: F'];
+  let parent = parents.F;
   while (parent) {
     optimalPath.push(parent);
     parent = parents[parent];
@@ -59,11 +57,11 @@ const dijkstra = (graph) => {
   optimalPath.reverse();
 
   const resultado = {
-    distance: custos.H,
+    distance: custos.F,
     path: optimalPath
   };
 
   return resultado;
 };
 
-console.log(dijkstra(questao2));
+console.log(dijkstra(questaotwo));
